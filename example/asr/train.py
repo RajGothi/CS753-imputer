@@ -149,11 +149,11 @@ def main(conf):
     # with open("trainval_indices.pkl", "rb") as f:
     #     split_indices = pickle.load(f)
 
-    data = list(range(4502))  # Create a list of data from 0 to 4501
+    data = list(range(4500))  # Create a list of data from 0 to 4501
 
-    train, val = train_test_split(data, test_size=0.2, random_state=42)
+    train_index, val_index = train_test_split(data, test_size=0.2, random_state=42)
 
-    split_indices = {"train":train,"val":val}
+    split_indices = {"train":train_index,"val":val_index}
 
     train_set = ASRDataset(conf.dataset.path, indices=split_indices["train"])
     valid_set = ASRDataset(conf.dataset.path, indices=split_indices["val"])
@@ -236,7 +236,9 @@ def main(conf):
         device,
         wandb,
     )
-
+    print("conf: ",conf)
+    print("Model: ",model)
+    print("model_training: ",model_training)
     train(conf, model_training)
 
 

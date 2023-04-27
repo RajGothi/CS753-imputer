@@ -17,6 +17,7 @@ from config import CTCASR
 from dataset import ASRDataset, collate_data, collate_data_imputer
 from model import Transformer
 from evaluate import valid
+from sklearn.model_selection import train_test_split
 
 
 def sample_data(loader):
@@ -189,8 +190,14 @@ def main(conf):
     else:
         wandb = None
 
-    with open("trainval_indices.pkl", "rb") as f:
-        split_indices = pickle.load(f)
+    # with open("trainval_indices.pkl", "rb") as f:
+    #     split_indices = pickle.load(f)
+
+    data = list(range(4500))  # Create a list of data from 0 to 4501
+
+    train_index, val_index = train_test_split(data, test_size=0.2, random_state=42)
+
+    split_indices = {"train":train_index,"val":val_index}
 
     train_set = ASRDataset(
         conf.dataset.path,
