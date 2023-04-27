@@ -63,7 +63,7 @@ def load_pcm(filename):
 
 
 def load_text(filename):
-    with open(filename, encoding='cp949') as f:
+    with open(filename, encoding='utf8') as f:
         return f.read()
 
 
