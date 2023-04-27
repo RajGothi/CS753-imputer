@@ -39,7 +39,7 @@ Imputer loss is basically ctc loss with force emit symbols. (force emit ctc stat
 
 Then, you can extract best alignments given input log probabilities and target sequences using `torch_imputer.best_alignment`
 
-```
+```python
 def best_alignment(
     log_prob, targets, input_lengths, target_lengths, blank=0, zero_infinity=False
 ):
@@ -70,7 +70,7 @@ You can refer to `example/asr/extract_best_align.py`
 
 Then you can train imputer model using `torch_imputer.ImputerLoss` or `torch_imputer.imputer_loss`
 
-```
+```python
 def imputer_loss(
     log_prob,
     targets,
@@ -109,7 +109,7 @@ def imputer_loss(
 
 You need to appropriately mask best alignment sequences and pass it `force_emits`. You also need to convert best alignment sequences (that is, sequence of ctc states) into sequence of target tokens to use it as an input to the model. You can do it using function like this:
 
-```
+```python
 def get_symbol(state, targets_list):
     """Convert sequence of ctc states into sequence of target tokens
 
