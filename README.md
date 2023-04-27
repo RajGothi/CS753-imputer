@@ -31,7 +31,7 @@
 3. Feed the superposition of $ã$ and $x$  to the Imputer, and get the output distribution for posterior alignment.
 4. Compute CTC loss, after freezing the unmasked tokens at their positions.
 
-![MicrosoftTeams-image.png](CS753%20-%20Hacker%20Role%20-%20Imputer%205a1ae5fe117947d88d3f6dfa8131f762/MicrosoftTeams-image.png)
+![MicrosoftTeams-image.png](https://github.com/RajGothi/CS753-imputer/blob/master/Results/MicrosoftTeams-image.png)
 
 # Usage
 
@@ -132,9 +132,11 @@ def get_symbol(state, targets_list):
 May you can refer to `collate_data_imputer` in `example/asr/dataset.py` to how you can construct data for imputer loss.
 
 <aside>
-<img src="https://www.notion.so/icons/groups_gray.svg" alt="https://www.notion.so/icons/groups_gray.svg" width="40px" /> **Team**
-22M2160: **Raj Kumanbhai Gothi**
-22M1163: **Rahul Kumar**
-22M1072: **Prashant Khatri**
+<img src="https://www.notion.so/icons/groups_gray.svg" alt="https://www.notion.so/icons/groups_gray.svg" width="40px" />
+Team:
+
+22M2160: Raj Kumanbhai Gothi
+22M1163: Rahul Kumar
+22M1072: Prashant Khatri
 
 </aside>
