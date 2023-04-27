@@ -16,6 +16,8 @@ from dataset import ASRDataset, collate_data
 from model import Transformer
 from evaluate import valid
 from sklearn.model_selection import train_test_split
+import os
+
 
 def sample_data(loader):
     loader_iter = iter(loader)
@@ -115,15 +117,17 @@ def train(conf, model_training):
 
                 else:
                     model_module = model
-
+                path="/content/checkpoint"
+                # ckpt_folder=os.path.join(path,f"ctc_{str(i).zfill(6)}")
+                # os.mkdir(path)
                 torch.save(
                     {
                         "model": model_module.state_dict(),
                         "scheduler": scheduler.state_dict(),
                         "conf": conf,
                     },
-                    f"checkpoint/ctc_{str(i).zfill(6)}.pt",
-                )
+                    f"{path}/ctc_{str(i).zfill(6)}.pt",
+               )
 
     if dist.is_primary() and conf.training.scheduler.type == "lr_find":
         scheduler.write_log("loss.log")
