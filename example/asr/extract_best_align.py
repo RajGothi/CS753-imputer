@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
     conf = load_arg_config(CTCASR)
 
-    with open("trainval_indices.pkl", "rb") as f:
+    with open("split_indices.pkl", "rb") as f:
         split_indices = pickle.load(f)
 
     train_set = ASRDataset(conf.dataset.path, indices=split_indices["train"])

@@ -18,7 +18,6 @@ from evaluate import valid
 from sklearn.model_selection import train_test_split
 import os
 
-
 def sample_data(loader):
     loader_iter = iter(loader)
     epoch = 0
@@ -156,8 +155,13 @@ def main(conf):
     data = list(range(4500))  # Create a list of data from 0 to 4501
 
     train_index, val_index = train_test_split(data, test_size=0.2, random_state=42)
+    pickle
 
     split_indices = {"train":train_index,"val":val_index}
+
+    with open('split_indices.pkl', 'wb') as file:
+        # A new file will be created
+        pickle.dump(split_indices, file)
 
     train_set = ASRDataset(conf.dataset.path, indices=split_indices["train"])
     valid_set = ASRDataset(conf.dataset.path, indices=split_indices["val"])
