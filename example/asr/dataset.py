@@ -6,9 +6,25 @@ from tensorfn.data import LMDBReader
 
 from audio import SpecNormalize, DeltaFeature
 
+import json
+  
+# Opening JSON file
+f = open('/content/imputer-pytorch/example/asr/kor_syllable.json')
+  
+# returns JSON object as 
+# a dictionary
+data = json.load(f)
+start = 3
 EPS_TOKEN = 0
 MASK_TOKEN = 1
 UNK_TOKEN = 2
+
+vocab= {}
+vocab["[E]"] = EPS_TOKEN
+vocab["[M]"] = MASK_TOKEN
+vocab["[U]"] = UNK_TOKEN
+for i in range(len(data)):
+    vocab[data[i]] = i + start
 
 
 class ASRDataset:
@@ -23,10 +39,12 @@ class ASRDataset:
         else:
             self.align_db = None
 
-        self.vocab = meta["vocab"]
-        self.vocab["[E]"] = EPS_TOKEN
-        self.vocab["[M]"] = MASK_TOKEN
-        self.vocab["[U]"] = UNK_TOKEN
+        # self.vocab = meta["vocab"]
+        # self.vocab["[E]"] = EPS_TOKEN
+        # self.vocab["[M]"] = MASK_TOKEN
+        # self.vocab["[U]"] = UNK_TOKEN
+
+        self.vocab = vocab
 
         self.inv_vocab = {v: k for k, v in self.vocab.items()}
 
@@ -48,8 +66,10 @@ class ASRDataset:
         text = []
 
         for c in code:
-            text.append(self.inv_vocab[c])
-
+            if c in self.inv_vocab.keys():
+                text.append(self.inv_vocab[c])
+            else:
+                text.append(",")
         return "".join(text)
 
     def __len__(self):

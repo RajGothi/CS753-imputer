@@ -31,7 +31,7 @@ if __name__ == "__main__":
     device = "cuda"
 
     conf = load_arg_config(CTCASR)
-
+    print(conf)
     with open("split_indices.pkl", "rb") as f:
         split_indices = pickle.load(f)
 
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         conf.model.n_head,
         conf.model.dropout,
     ).to(device)
-
+    
     ckpt = torch.load(conf.ckpt, map_location=lambda storage, loc: storage)
     model.load_state_dict(ckpt["model"])
 
