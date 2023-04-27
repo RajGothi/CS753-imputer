@@ -31,6 +31,9 @@
 3. Feed the superposition of $ã$ and $x$  to the Imputer, and get the output distribution for posterior alignment.
 4. Compute CTC loss, after freezing the unmasked tokens at their positions.
 
+Training Analysis: https://wandb.ai/iitb_asr_cs753/asr?workspace=user-rajgothi6
+
+
 ![MicrosoftTeams-image.png](https://github.com/RajGothi/CS753-imputer/blob/master/Results/MicrosoftTeams-image.png)
 
 # Usage
