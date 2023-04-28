@@ -134,7 +134,7 @@ def get_symbol(state, targets_list):
 
 May you can refer to `collate_data_imputer` in `example/asr/dataset.py` to how you can construct data for imputer loss.
 
-### Possible Implementation
+### Further Possible Implementation
 - To Train the Imputer, we first need to train CTC Model and extracting best alignment for train data then we can train the Imputer. It takes so much time to       train the overall model. Come up with different training strategy such that simultaneously we can train both of it, Like GAN does.
 - Currently, Imputer Loss Function is written in the C++ library and calling those function in python instead We can implement the Imputer Loss function in the     python from scratch.
 - Exploring Different Probability distribution for Masking policy in Imputer Loss and compare the results.
